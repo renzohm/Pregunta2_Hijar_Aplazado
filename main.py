@@ -79,6 +79,24 @@ def clasificar(value):
     return 'Triángulo'
 
 
+
+# Carga una imagen de prueba
+img = np.array(Image.open('./prueba/cuadrado.jpeg').resize((64, 64)))
+
+# Normaliza la imagen
+img = img / 255.0
+
+# Agrega una dimensión para convertirla en un lote de una imagen
+img = np.expand_dims(img, axis=0)
+
+# Obtiene la predicción de la red neuronal
+pred = model.predict(img)
+
+# Imprime el vector de probabilidades de cada clase
+print("La imagen es un " + clasificar(np.argmax(pred)))
+
+
+
 # Carga una imagen de prueba
 img = np.array(Image.open('./prueba/circulo.jpg').resize((64, 64)))
 
@@ -91,4 +109,19 @@ img = np.expand_dims(img, axis=0)
 # # Obtiene la predicción de la red neuronal
 pred = model.predict(img)
 
-print("La imagen es un " + clasificar(pred))
+print("La imagen es un " + clasificar(np.argmax(pred)))
+
+
+# Carga una imagen de prueba
+img = np.array(Image.open('./prueba/triangulo.jpeg').resize((64, 64)))
+
+# # Normaliza la imagen
+img = img / 255.0
+
+# # Agrega una dimensión para convertirla en un lote de una imagen
+img = np.expand_dims(img, axis=0)
+
+# # Obtiene la predicción de la red neuronal
+pred = model.predict(img)
+
+print("La imagen es un " + clasificar(np.argmax(pred)))
